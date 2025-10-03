@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { UserTable } from "@/components/UserTable";
 import { AddUserModal } from "@/components/AddUserModal";
 import { EditUserModal } from "@/components/EditUserModal";
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster, toaster } from '@/components/ui/toaster';
 import { fetchUsers, createUser, updateUser, deleteUser } from "@/services/userService";
 import { User, UserFormData } from "@/types/user";
 
@@ -26,14 +26,20 @@ export default function HomePage() {
     mutationFn: createUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
-    Toaster.create({
+    toaster.create({
         title: "User added successfully",
         type: "success",
         duration: 3000,
       });
     },
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * Called when an error occurs while adding a user.
+ * @param {Error} error - The error that occurred.
+ */
+/*******  f9eb70e2-639d-4743-85f7-a3d7935c22c0  *******/
     onError: (error: Error) => {
-    Toaster.create({
+    toaster.create({
         title: "Failed to add user",
         description: error.message,
         type: "error",
@@ -115,8 +121,7 @@ export default function HomePage() {
           <Button
             colorScheme="blue"
             size="lg"
-            onClick={() => setIsAddModalOpen(true)}
-          >
+            onClick={() => setIsAddModalOpen(true)}>
             <Plus />
             Add User
           </Button>
@@ -143,13 +148,14 @@ export default function HomePage() {
       <EditUserModal
         isOpen={isEditModalOpen}
         onClose={() => {
-          setIsEditModalOpen(false);
-          setSelectedUser(null);
+          setIsEditModalOpen(false)
+          setSelectedUser(null)
         }}
         onSubmit={handleUpdateUser}
         user={selectedUser}
         isLoading={updateMutation.isPending}
       />
+      <Toaster />
     </Container>
-  );
+  )
 }
