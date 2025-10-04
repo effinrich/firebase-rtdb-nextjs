@@ -1,9 +1,19 @@
 
 import { useState, useEffect } from "react";
-import { DialogRoot, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogFooter, DialogBackdrop, DialogCloseTrigger } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { Field } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
+import {
+  Input,
+  Button,
+  Field,
+  DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogBody,
+  DialogFooter,
+  DialogBackdrop,
+  DialogCloseTrigger
+} from '@chakra-ui/react'
+
 import { User, UserFormData } from "@/types/user";
 
 interface EditUserModalProps {

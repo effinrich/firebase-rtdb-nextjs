@@ -1,9 +1,6 @@
 
 import { useState } from "react";
-import { DialogRoot, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogFooter, DialogBackdrop, DialogCloseTrigger } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { Field } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
+import {Input, Button, Field, DialogRoot, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogFooter, DialogBackdrop, DialogCloseTrigger } from "@chakra-ui/react";
 import { UserFormData } from "@/types/user";
 
 interface AddUserModalProps {
@@ -68,14 +65,16 @@ export function AddUserModal({ isOpen, onClose, onSubmit, isLoading }: AddUserMo
           <DialogTitle>Add New User</DialogTitle>
           <DialogCloseTrigger />
         </DialogHeader>
-        
+
         <DialogBody>
           <form onSubmit={handleSubmit}>
             <Field.Root invalid={!!errors.name} mb={4}>
               <Field.Label>Name</Field.Label>
               <Input
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={e =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 placeholder="Enter user name"
                 disabled={isLoading}
               />
@@ -86,11 +85,15 @@ export function AddUserModal({ isOpen, onClose, onSubmit, isLoading }: AddUserMo
               <Field.Label>Zip Code</Field.Label>
               <Input
                 value={formData.zipCode}
-                onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
+                onChange={e =>
+                  setFormData({ ...formData, zipCode: e.target.value })
+                }
                 placeholder="Enter zip code (e.g., 10001)"
                 disabled={isLoading}
               />
-              {errors.zipCode && <Field.ErrorText>{errors.zipCode}</Field.ErrorText>}
+              {errors.zipCode && (
+                <Field.ErrorText>{errors.zipCode}</Field.ErrorText>
+              )}
               <Field.HelperText>
                 Location data will be fetched automatically
               </Field.HelperText>
@@ -103,16 +106,15 @@ export function AddUserModal({ isOpen, onClose, onSubmit, isLoading }: AddUserMo
             Cancel
           </Button>
           <Button
-            colorScheme="blue"
+            colorPalette="blue"
             onClick={handleSubmit}
             loading={isLoading}
             disabled={isLoading}
-            ml={3}
-          >
+            ml={3}>
             Add User
           </Button>
         </DialogFooter>
       </DialogContent>
     </DialogRoot>
-  );
+  )
 }

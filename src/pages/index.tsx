@@ -32,12 +32,6 @@ export default function HomePage() {
         duration: 3000,
       });
     },
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Called when an error occurs while adding a user.
- * @param {Error} error - The error that occurred.
- */
-/*******  f9eb70e2-639d-4743-85f7-a3d7935c22c0  *******/
     onError: (error: Error) => {
     toaster.create({
         title: "Failed to add user",

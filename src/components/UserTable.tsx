@@ -1,14 +1,14 @@
 
-import { Table } from "@chakra-ui/react";
-import { Button, Box, Text, Center } from "@chakra-ui/react";
-import { User } from "@/types/user";
-import { Edit, Trash2 } from "lucide-react";
+import { Table } from "@chakra-ui/react"
+import { Button, Box, Text, Center } from "@chakra-ui/react"
+import { User } from "@/types/user"
+import { Edit, Trash2 } from "lucide-react"
 
 interface UserTableProps {
-  users: User[];
-  onEdit: (user: User) => void;
-  onDelete: (id: string) => void;
-  isLoading?: boolean;
+  users: Array<User>
+  onEdit: (user: User) => void
+  onDelete: (id: string) => void
+  isLoading?: boolean
 }
 
 export function UserTable({ users, onEdit, onDelete, isLoading }: UserTableProps) {
@@ -17,7 +17,7 @@ export function UserTable({ users, onEdit, onDelete, isLoading }: UserTableProps
       <Center py={12}>
         <Text fontSize="lg" color="gray.500">Loading users...</Text>
       </Center>
-    );
+    )
   }
 
   if (users.length === 0) {
@@ -28,7 +28,7 @@ export function UserTable({ users, onEdit, onDelete, isLoading }: UserTableProps
           <Text fontSize="sm" color="gray.500" mt={1}>Get started by adding your first user</Text>
         </Box>
       </Center>
-    );
+    )
   }
 
   return (
@@ -79,5 +79,5 @@ export function UserTable({ users, onEdit, onDelete, isLoading }: UserTableProps
         </Table.Body>
       </Table.Root>
     </Table.ScrollArea>
-  );
+  )
 }
