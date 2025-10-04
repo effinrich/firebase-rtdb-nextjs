@@ -1,109 +1,121 @@
-
-import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Container, Heading, Button, Box, Flex, Text } from "@chakra-ui/react";
-import { Plus } from "lucide-react";
-import { UserTable } from "@/components/UserTable";
-import { AddUserModal } from "@/components/AddUserModal";
-import { EditUserModal } from "@/components/EditUserModal";
-import { Toaster, toaster } from '@/components/ui/toaster';
-import { fetchUsers, createUser, updateUser, deleteUser } from "@/services/userService";
-import { User, UserFormData } from "@/types/user";
+import { useState } from 'react'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { Container, Heading, Button, Box, Flex, Text } from '@chakra-ui/react'
+import { Plus } from 'lucide-react'
+import { UserTable } from '@/components/UserTable'
+import { AddUserModal } from '@/components/AddUserModal'
+import { EditUserModal } from '@/components/EditUserModal'
+import { Toaster, toaster } from '@/components/ui/toaster'
+import {
+  fetchUsers,
+  createUser,
+  updateUser,
+  deleteUser
+} from '@/services/userService'
+import { User, UserFormData } from '@/types/user'
 
 export default function HomePage() {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  
-  const queryClient = useQueryClient();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+
+  const queryClient = useQueryClient()
 
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: fetchUsers,
-  });
+    queryKey: ['users'],
+    queryFn: fetchUsers
+  })
 
   const createMutation = useMutation({
     mutationFn: createUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
-    toaster.create({
-        title: "User added successfully",
-        type: "success",
-        duration: 3000,
-      });
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+      toaster.create({
+        title: 'User added successfully',
+        type: 'success',
+        duration: 3000
+      })
     },
     onError: (error: Error) => {
-    toaster.create({
-        title: "Failed to add user",
+      toaster.create({
+        title: 'Failed to add user',
         description: error.message,
-        type: "error",
-        duration: 5000,
-      });
-    },
-  });
+        type: 'error',
+        duration: 5000
+      })
+    }
+  })
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, formData, currentZipCode }: { 
-      id: string; 
-      formData: UserFormData; 
-      currentZipCode: string;
+    mutationFn: ({
+      id,
+      formData,
+      currentZipCode
+    }: {
+      id: string
+      formData: UserFormData
+      currentZipCode: string
     }) => updateUser(id, formData, currentZipCode),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ['users'] })
       toaster.create({
-        title: "User updated successfully",
-        type: "success",
-        duration: 3000,
-      });
+        title: 'User updated successfully',
+        type: 'success',
+        duration: 3000
+      })
     },
     onError: (error: Error) => {
       toaster.create({
-        title: "Failed to update user",
+        title: 'Failed to update user',
         description: error.message,
-        type: "error",
-        duration: 5000,
-      });
-    },
-  });
+        type: 'error',
+        duration: 5000
+      })
+    }
+  })
 
   const deleteMutation = useMutation({
     mutationFn: deleteUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ['users'] })
       toaster.create({
-        title: "User deleted successfully",
-        type: "success",
-        duration: 3000,
-      });
+        title: 'User deleted successfully',
+        type: 'success',
+        duration: 3000
+      })
     },
     onError: (error: Error) => {
       toaster.create({
-        title: "Failed to delete user",
+        title: 'Failed to delete user',
         description: error.message,
-        type: "error",
-        duration: 5000,
-      });
-    },
-  });
+        type: 'error',
+        duration: 5000
+      })
+    }
+  })
 
   const handleAddUser = async (formData: UserFormData) => {
-    await createMutation.mutateAsync(formData);
-  };
+    await createMutation.mutateAsync(formData)
+  }
 
   const handleEditUser = (user: User) => {
-    setSelectedUser(user);
-    setIsEditModalOpen(true);
-  };
+    setSelectedUser(user)
+    setIsEditModalOpen(true)
+  }
 
-  const handleUpdateUser = async (id: string, formData: UserFormData, currentZipCode: string) => {
-    await updateMutation.mutateAsync({ id, formData, currentZipCode });
-  };
+  const handleUpdateUser = async (
+    id: string,
+    formData: UserFormData,
+    currentZipCode: string
+  ) => {
+    await updateMutation.mutateAsync({ id, formData, currentZipCode })
+  }
 
   const handleDeleteUser = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      await deleteMutation.mutateAsync(id);
+    if (window.confirm('Are you sure you want to delete this user?')) {
+      await deleteMutation.mutateAsync(id)
     }
-  };
+  }
 
   return (
     <Container maxW="container.xl" py={8}>
@@ -115,7 +127,8 @@ export default function HomePage() {
           <Button
             colorScheme="blue"
             size="lg"
-            onClick={() => setIsAddModalOpen(true)}>
+            onClick={() => setIsAddModalOpen(true)}
+          >
             <Plus />
             Add User
           </Button>
