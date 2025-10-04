@@ -1,5 +1,4 @@
- import { Html, Head, Main, NextScript } from "next/document";
-import { Container } from '@chakra-ui/react'
+import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
@@ -12,11 +11,9 @@ export default function Document() {
         /> */}
       </Head>
       <body>
-      <Container fluid={true}>
         <Main />
         <NextScript />
-      </Container>
       </body>
     </Html>
-  );
+  )
 }

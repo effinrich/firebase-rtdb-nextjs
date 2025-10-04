@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import * as React from 'react'
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { Button, Menu, Portal } from '@chakra-ui/react'
 
 export function ThemeSwitch() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
 
   return (
     <Menu.Root>
@@ -26,9 +26,12 @@ export function ThemeSwitch() {
             <Menu.Item onClick={() => setTheme('dark')} value="dark-theme-a">
               Dark
             </Menu.Item>
-            <Menu.Item onClick={() => setTheme('system')} value="system-theme-a">
+            <Menu.Item
+              onClick={() => setTheme('system')}
+              value="system-theme-a"
+            >
               System
-              </Menu.Item>
+            </Menu.Item>
           </Menu.Content>
         </Menu.Positioner>
       </Portal>

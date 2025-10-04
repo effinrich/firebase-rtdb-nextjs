@@ -1,61 +1,77 @@
-
-import { useState } from "react";
-import {Input, Button, Field, DialogRoot, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogFooter, DialogBackdrop, DialogCloseTrigger } from "@chakra-ui/react";
-import { UserFormData } from "@/types/user";
+import { useState } from 'react'
+import {
+  Input,
+  Button,
+  Field,
+  DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogBody,
+  DialogFooter,
+  DialogBackdrop,
+  DialogCloseTrigger
+} from '@chakra-ui/react'
+import { UserFormData } from '@/types/user'
 
 interface AddUserModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: UserFormData) => Promise<void>;
-  isLoading?: boolean;
+  isOpen: boolean
+  onClose: () => void
+  onSubmit: (data: UserFormData) => Promise<void>
+  isLoading?: boolean
 }
 
-export function AddUserModal({ isOpen, onClose, onSubmit, isLoading }: AddUserModalProps) {
+export function AddUserModal({
+  isOpen,
+  onClose,
+  onSubmit,
+  isLoading
+}: AddUserModalProps) {
   const [formData, setFormData] = useState<UserFormData>({
-    name: "",
-    zipCode: "",
-  });
-  const [errors, setErrors] = useState<Partial<UserFormData>>({});
+    name: '',
+    zipCode: ''
+  })
+  const [errors, setErrors] = useState<Partial<UserFormData>>({})
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<UserFormData> = {};
-    
+    const newErrors: Partial<UserFormData> = {}
+
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = 'Name is required'
     }
-    
+
     if (!formData.zipCode.trim()) {
-      newErrors.zipCode = "Zip code is required";
+      newErrors.zipCode = 'Zip code is required'
     } else if (!/^\d{5}(-\d{4})?$/.test(formData.zipCode)) {
-      newErrors.zipCode = "Invalid zip code format";
+      newErrors.zipCode = 'Invalid zip code format'
     }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+    e.preventDefault()
+
     if (!validateForm()) {
-      return;
+      return
     }
-    
+
     try {
-      await onSubmit(formData);
-      setFormData({ name: "", zipCode: "" });
-      setErrors({});
-      onClose();
+      await onSubmit(formData)
+      setFormData({ name: '', zipCode: '' })
+      setErrors({})
+      onClose()
     } catch (error) {
-      console.error("Failed to add user:", error);
+      console.error('Failed to add user:', error)
     }
-  };
+  }
 
   const handleClose = () => {
-    setFormData({ name: "", zipCode: "" });
-    setErrors({});
-    onClose();
-  };
+    setFormData({ name: '', zipCode: '' })
+    setErrors({})
+    onClose()
+  }
 
   return (
     <DialogRoot open={isOpen} onOpenChange={handleClose} size="md">
@@ -106,11 +122,11 @@ export function AddUserModal({ isOpen, onClose, onSubmit, isLoading }: AddUserMo
             Cancel
           </Button>
           <Button
-            colorPalette="blue"
             onClick={handleSubmit}
             loading={isLoading}
             disabled={isLoading}
-            ml={3}>
+            ml={2}
+          >
             Add User
           </Button>
         </DialogFooter>

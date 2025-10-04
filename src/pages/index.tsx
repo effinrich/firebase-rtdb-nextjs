@@ -121,12 +121,11 @@ export default function HomePage() {
     <Container maxW="container.xl" py={8}>
       <Box mb={8}>
         <Flex justify="space-between" align="center" mb={2}>
-          <Heading as="h1" size="xl" fontWeight="bold">
+          <Heading as="h1" size="3xl" fontWeight="bold">
             User Dashboard
           </Heading>
           <Button
-            colorScheme="blue"
-            size="lg"
+            size="md"
             onClick={() => setIsAddModalOpen(true)}
           >
             <Plus />
@@ -134,7 +133,7 @@ export default function HomePage() {
           </Button>
         </Flex>
         <Text color="gray.600" fontSize="lg">
-          Manage users with automatic location data from zip codes
+          Manage users and location data
         </Text>
       </Box>
 
