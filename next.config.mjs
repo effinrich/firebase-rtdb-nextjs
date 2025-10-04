@@ -5,11 +5,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
-      },
-    ],
+        hostname: '**'
+      }
+    ]
   },
-  allowedDevOrigins: ['*.daytona.work'],
-};
+  allowedDevOrigins: ['*.daytona.work']
+}
 
-export default nextConfig;
+export default nextConfig
