@@ -1,6 +1,8 @@
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import type { Preview } from '@storybook/nextjs-vite'
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {
@@ -15,7 +17,14 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: 'todo'
     }
-  }
+  },
+  decorators: [
+    Story => (
+      <ChakraProvider value={defaultSystem}>
+        <Story />
+      </ChakraProvider>
+    )
+  ]
 }
 
 export default preview
