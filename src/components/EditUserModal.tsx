@@ -1,17 +1,5 @@
 import { useState, useEffect } from 'react'
-import {
-  Input,
-  Button,
-  Field,
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogBody,
-  DialogFooter,
-  DialogBackdrop,
-  DialogCloseTrigger
-} from '@chakra-ui/react'
+import { Input, Button, Field, Dialog, Portal } from '@chakra-ui/react'
 
 import { User, UserFormData } from '@/types/user'
 
@@ -90,65 +78,80 @@ export function EditUserModal({
   const zipCodeChanged = user && formData.zipCode !== user.zipCode
 
   return (
-    <DialogRoot open={isOpen} onOpenChange={handleClose} size="md">
-      <DialogBackdrop />
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit User</DialogTitle>
-          <DialogCloseTrigger />
-        </DialogHeader>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={handleClose}
+      size="md"
+      placement={'top'}
+      motionPreset="slide-in-bottom"
+    >
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>Edit User</Dialog.Title>
+              <Dialog.CloseTrigger />
+            </Dialog.Header>
+            <Dialog.Body>
+              <form onSubmit={handleSubmit}>
+                <Field.Root invalid={!!errors.name} mb={4}>
+                  <Field.Label>Name</Field.Label>
+                  <Input
+                    value={formData.name}
+                    onChange={e =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    placeholder="Enter user name"
+                    disabled={isLoading}
+                  />
+                  {errors.name && (
+                    <Field.ErrorText>{errors.name}</Field.ErrorText>
+                  )}
+                </Field.Root>
 
-        <DialogBody>
-          <form onSubmit={handleSubmit}>
-            <Field.Root invalid={!!errors.name} mb={4}>
-              <Field.Label>Name</Field.Label>
-              <Input
-                value={formData.name}
-                onChange={e =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                placeholder="Enter user name"
+                <Field.Root invalid={!!errors.zipCode}>
+                  <Field.Label>Zip Code</Field.Label>
+                  <Input
+                    value={formData.zipCode}
+                    onChange={e =>
+                      setFormData({ ...formData, zipCode: e.target.value })
+                    }
+                    placeholder="Enter zip code (e.g., 10001)"
+                    disabled={isLoading}
+                  />
+                  {errors.zipCode && (
+                    <Field.ErrorText>{errors.zipCode}</Field.ErrorText>
+                  )}
+                  {zipCodeChanged && (
+                    <Field.HelperText color="blue.600">
+                      Location data will be updated automatically
+                    </Field.HelperText>
+                  )}
+                </Field.Root>
+              </form>
+            </Dialog.Body>
+
+            <Dialog.Footer>
+              <Button
+                variant="outline"
+                onClick={handleClose}
                 disabled={isLoading}
-              />
-              {errors.name && <Field.ErrorText>{errors.name}</Field.ErrorText>}
-            </Field.Root>
-
-            <Field.Root invalid={!!errors.zipCode}>
-              <Field.Label>Zip Code</Field.Label>
-              <Input
-                value={formData.zipCode}
-                onChange={e =>
-                  setFormData({ ...formData, zipCode: e.target.value })
-                }
-                placeholder="Enter zip code (e.g., 10001)"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSubmit}
+                loading={isLoading}
                 disabled={isLoading}
-              />
-              {errors.zipCode && (
-                <Field.ErrorText>{errors.zipCode}</Field.ErrorText>
-              )}
-              {zipCodeChanged && (
-                <Field.HelperText color="blue.600">
-                  Location data will be updated automatically
-                </Field.HelperText>
-              )}
-            </Field.Root>
-          </form>
-        </DialogBody>
-
-        <DialogFooter>
-          <Button variant="outline" onClick={handleClose} disabled={isLoading}>
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSubmit}
-            loading={isLoading}
-            disabled={isLoading}
-            ml={2}
-          >
-            Update User
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </DialogRoot>
+                ml={2}
+              >
+                Update User
+              </Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }
