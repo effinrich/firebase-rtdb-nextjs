@@ -15,7 +15,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{
-            secrets.FIREBASE_SERVICE_ACCOUNT_RENT_REDI_ASSESSMENT_711_14FD0 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RENT_REDI_USERS }}
           channelId: live
-          projectId: rent-redi-assessment-711-14fd0
+          projectId: rent-redi-users
