@@ -1,5 +1,5 @@
 {
-  "name": "softgen-starter",
+  "name": "firebase-rtdb-nextjs",
   "version": "2.3.0",
   "private": true,
   "scripts": {
@@ -27,6 +27,7 @@
     "embla-carousel-react": "^8.5.2",
     "firebase": "^12.3.0",
     "framer-motion": "^12.23.22",
+    "geo-tz": "^8.1.4",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.474.0",
     "micro": "^10.0.1",
@@ -51,6 +52,7 @@
     "@types/react-dom": "^18",
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.2.3",
+    "fs": "^0.0.1-security",
     "prettier": "^3.6.2",
     "typescript": "^5"
   }
