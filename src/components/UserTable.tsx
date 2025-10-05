@@ -57,6 +57,7 @@ export function UserTable({
       <Table.Root variant="line">
         <Table.Header bg="gray.50">
           <Table.Row>
+            <Table.ColumnHeader fontWeight="semibold">ID</Table.ColumnHeader>
             <Table.ColumnHeader fontWeight="semibold">Name</Table.ColumnHeader>
             <Table.ColumnHeader fontWeight="semibold">
               Zip Code
@@ -78,6 +79,7 @@ export function UserTable({
         <Table.Body>
           {users.map(user => (
             <Table.Row key={user.id} _hover={{ bg: 'gray.50' }}>
+              <Table.Cell fontWeight="medium">{user.id}</Table.Cell>
               <Table.Cell fontWeight="medium">{user.name}</Table.Cell>
               <Table.Cell>{user.zipCode}</Table.Cell>
               <Table.Cell textAlign="right">
@@ -86,7 +88,7 @@ export function UserTable({
               <Table.Cell textAlign="right">
                 {user.longitude?.toFixed(2)}
               </Table.Cell>
-              <Table.Cell textAlign="right">{`UTC${user.timezone/ 3600 >= 0 ? '+' : ''}${user.timezone/ 3600}`}</Table.Cell>
+              <Table.Cell textAlign="right">{`UTC${user.timezone / 3600 >= 0 ? '+' : ''}${user.timezone / 3600}`}</Table.Cell>
               <Table.Cell>
                 <Box display="flex" gap={2} justifyContent="flex-end">
                   <Button
