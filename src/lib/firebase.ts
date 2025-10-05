@@ -2,13 +2,14 @@ import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  apiKey: 'AIzaSyDk33ndbWNJydS4Lxq1_ZZBFnBmQk2p57Q',
+  authDomain: 'rent-redi-users.firebaseapp.com',
+  databaseURL: 'https://rent-redi-users-default-rtdb.firebaseio.com',
+  projectId: 'rent-redi-users',
+  storageBucket: 'rent-redi-users.firebasestorage.app',
+  messagingSenderId: '528555687409',
+  appId: '1:528555687409:web:930119676e2228b5409850',
+  measurementId: 'G-DPQQ9NB3E4'
 }
 
 const app = initializeApp(firebaseConfig)
