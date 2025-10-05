@@ -124,10 +124,7 @@ export default function HomePage() {
           <Heading as="h1" size="3xl" fontWeight="bold">
             User Dashboard
           </Heading>
-          <Button
-            size="sm"
-            onClick={() => setIsAddModalOpen(true)}
-          >
+          <Button size="sm" onClick={() => setIsAddModalOpen(true)}>
             <Plus />
             Add User
           </Button>
