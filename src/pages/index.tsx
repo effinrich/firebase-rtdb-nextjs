@@ -125,7 +125,7 @@ export default function HomePage() {
             User Dashboard
           </Heading>
           <Button
-            size="md"
+            size="sm"
             onClick={() => setIsAddModalOpen(true)}
           >
             <Plus />
