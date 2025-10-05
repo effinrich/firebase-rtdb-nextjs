@@ -1,6 +1,8 @@
 import { Table } from '@chakra-ui/react'
 import { Button, Box, Text, Center } from '@chakra-ui/react'
+
 import { User } from '@/types/user'
+import { useToUTC } from '@/hooks/use-toUTC'
 import { Edit, Trash2 } from 'lucide-react'
 
 interface UserTableProps {
@@ -80,12 +82,12 @@ export function UserTable({
               <Table.Cell fontWeight="medium">{user.name}</Table.Cell>
               <Table.Cell>{user.zipCode}</Table.Cell>
               <Table.Cell textAlign="right">
-                {user.latitude?.toFixed(4)}
+                {user.latitude?.toFixed(2)}
               </Table.Cell>
               <Table.Cell textAlign="right">
-                {user.longitude?.toFixed(4)}
+                {user.longitude?.toFixed(2)}
               </Table.Cell>
-              <Table.Cell textAlign="right">{user.timezone}</Table.Cell>
+              <Table.Cell textAlign="right">{useToUTC(user.timezone)}</Table.Cell>
               <Table.Cell>
                 <Box display="flex" gap={2} justifyContent="flex-end">
                   <Button
