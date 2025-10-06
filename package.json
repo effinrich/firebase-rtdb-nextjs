@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_e421af0d2997125"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@chakra-ui/cli": "^3.27.0",
@@ -48,6 +47,7 @@
     "@storybook/addon-docs": "^9.1.10",
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/nextjs-vite": "^9.1.10",
+    "@storybook/test": "^8.6.14",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
