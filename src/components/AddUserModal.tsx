@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react'
 import { Input, Button, Field, Dialog, Portal } from '@chakra-ui/react'
+
 import { UserFormData } from '@/types/user'
 
 interface AddUserModalProps {

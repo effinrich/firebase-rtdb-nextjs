@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import { Input, Button, Field, Dialog, Portal } from '@chakra-ui/react'
 
