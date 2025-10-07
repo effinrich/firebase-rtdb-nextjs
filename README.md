@@ -7,8 +7,12 @@
 - axios
 
 ## To run locally
-- npm i
-- npm run dev
+```bash
+npm i
+npm run dev
+```
 
 ## To run Storybook locally
-- npm run storybook
+```bash
+npm run storybook
+```
